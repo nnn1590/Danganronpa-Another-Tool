@@ -1,0 +1,13 @@
+{
+    "commands": {
+        "build": "msbuild",
+        "run": "mono \"Danganronpa Another Tool/bin/Debug/Danganronpa Another Tool.exe\""
+    },
+    "messages": {
+        "building": true,
+        "buildSuccess": true,
+        "buildError": true,
+        "buildErrorMessageBox": true,
+        "run": true
+    }
+}
