@@ -277,7 +277,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SingleWAD in WAD.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\WAD\\" + Path.GetFileNameWithoutExtension(SingleWAD);
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}WAD{Path.DirectorySeparatorChar}" + Path.GetFileNameWithoutExtension(SingleWAD);
 
                         if (Directory.Exists(DestinationDir) == false)
                             Directory.CreateDirectory(DestinationDir);
@@ -363,7 +363,7 @@ namespace Danganronpa_Another_Tool
 
         private void button2_Click(object sender, EventArgs e) // REPACK WAD 
         {
-            string OriginalDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\WAD";
+            string OriginalDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}WAD";
 
             // If the folder "EXTRACTED WAD" exists and is not empty.
             if (Directory.Exists(OriginalDir) && Directory.EnumerateDirectories(OriginalDir).Any() == true)
@@ -371,7 +371,7 @@ namespace Danganronpa_Another_Tool
                 label5.Text = "Wait..."; // Change "Ready!" to "Wait..."
                 label5.Refresh(); // Refresh the Status label.
 
-                string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\REPACKED\\WAD";
+                string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}REPACKED{Path.DirectorySeparatorChar}WAD";
 
                 // If the destination folder does not exist, create it.
                 if (Directory.Exists(DestinationDir) == false)
@@ -563,7 +563,7 @@ namespace Danganronpa_Another_Tool
                         label5.Text = "Wait...";
                         label5.Refresh();
 
-                        string DestinationDir = "DR1 (PSP) [MANUAL MODE]\\EXTRACTED\\" + Path.GetFileNameWithoutExtension(UMDIMAGE.FileName).ToUpper() + " (FULL GAME)";
+                        string DestinationDir = $"DR1 (PSP) [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}" + Path.GetFileNameWithoutExtension(UMDIMAGE.FileName).ToUpper() + " (FULL GAME)";
 
                         if (Directory.Exists(DestinationDir) == false)
                             Directory.CreateDirectory(DestinationDir);
@@ -596,7 +596,7 @@ namespace Danganronpa_Another_Tool
                         label5.Text = "Wait...";
                         label5.Refresh();
 
-                        string DestinationDir = "DR1 (PSP) [MANUAL MODE]\\EXTRACTED\\" + Path.GetFileNameWithoutExtension(UMDIMAGE.FileName).ToUpper() + " (DEMO)";
+                        string DestinationDir = $"DR1 (PSP) [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}" + Path.GetFileNameWithoutExtension(UMDIMAGE.FileName).ToUpper() + " (DEMO)";
 
                         if (Directory.Exists(DestinationDir) == false)
                             Directory.CreateDirectory(DestinationDir);
@@ -717,7 +717,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SingleLIN in LIN.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\LIN\\" + Path.GetFileNameWithoutExtension(SingleLIN);
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}LIN{Path.DirectorySeparatorChar}" + Path.GetFileNameWithoutExtension(SingleLIN);
 
                         ExtractLIN(SingleLIN, DestinationDir);
                     }
@@ -1078,8 +1078,8 @@ namespace Danganronpa_Another_Tool
                 if (tabControl1.SelectedTab.Text.Contains("DRV3 (PC)"))
                     CartellaCoiTestiJap = "DRV3PC";
 
-                if (File.Exists(Path.Combine("Ext\\JapText", CartellaCoiTestiJap, Path.GetFileNameWithoutExtension(NewXMLAddress) + ".rawtext")) == true)
-                    JAPText = TextExtractor(Path.Combine("Ext\\JapText", CartellaCoiTestiJap, Path.GetFileNameWithoutExtension(NewXMLAddress) + ".rawtext"));
+                if (File.Exists(Path.Combine($"Ext{Path.DirectorySeparatorChar}JapText", CartellaCoiTestiJap, Path.GetFileNameWithoutExtension(NewXMLAddress) + ".rawtext")) == true)
+                    JAPText = TextExtractor(Path.Combine($"Ext{Path.DirectorySeparatorChar}JapText", CartellaCoiTestiJap, Path.GetFileNameWithoutExtension(NewXMLAddress) + ".rawtext"));
             }
 
             using (FileStream NuovoXML = new FileStream(NewXMLAddress, FileMode.Create, FileAccess.Write))
@@ -1120,7 +1120,7 @@ namespace Danganronpa_Another_Tool
 
         private void button8_Click(object sender, EventArgs e) // REPACK .LIN 
         {
-            string OriginalDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\LIN";
+            string OriginalDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}LIN";
 
             // If "EXTRACTED LIN" exists and it's not empty.
             if (Directory.Exists(OriginalDir) && Directory.EnumerateDirectories(OriginalDir).Any() == true)
@@ -1128,7 +1128,7 @@ namespace Danganronpa_Another_Tool
                 label5.Text = "Wait..."; // Change "Ready!" to "Wait..."
                 label5.Refresh(); // Refresh the Status label.
 
-                string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\REPACKED\\LIN";
+                string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}REPACKED{Path.DirectorySeparatorChar}LIN";
 
                 // If the destination folder does not exist, create it.
                 if (Directory.Exists(DestinationDir) == false)
@@ -1402,7 +1402,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SinglePAK in PAK.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXT PAK TYPE 1\\" + Path.GetFileNameWithoutExtension(SinglePAK);
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXT PAK TYPE 1{Path.DirectorySeparatorChar}" + Path.GetFileNameWithoutExtension(SinglePAK);
 
                         MakeXML(TextExtractor(SinglePAK), null, Path.Combine(DestinationDir, Path.GetFileNameWithoutExtension(SinglePAK) + ".xml"));
                     }
@@ -1416,7 +1416,7 @@ namespace Danganronpa_Another_Tool
 
         private void button10_Click(object sender, EventArgs e) // REPACK TEXT PAK TYPE 1 ".PAK" --> Simple text 
         {
-            string OriginalDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXT PAK TYPE 1";
+            string OriginalDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXT PAK TYPE 1";
 
             // If "EXTRACTED TEXT PAK TYPE 1" exists and it's not empty.
             if (Directory.Exists(OriginalDir) && Directory.EnumerateDirectories(OriginalDir).Any() == true)
@@ -1424,7 +1424,7 @@ namespace Danganronpa_Another_Tool
                 label5.Text = "Wait..."; // Change "Ready!" to "Wait..."
                 label5.Refresh(); // Refresh the Status label.
 
-                string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\REPACKED\\TEXT PAK TYPE 1";
+                string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}REPACKED{Path.DirectorySeparatorChar}TEXT PAK TYPE 1";
 
                 // If the destination folder does not exist, create it.
                 if (Directory.Exists(DestinationDir) == false)
@@ -1455,7 +1455,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SinglePAK in PAK.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXT PAK TYPE 2\\" + Path.GetFileNameWithoutExtension(SinglePAK);
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXT PAK TYPE 2{Path.DirectorySeparatorChar}" + Path.GetFileNameWithoutExtension(SinglePAK);
 
                         // 0 = Don't convert the images, leave them like they are.
                         ExtractPAK(SinglePAK, DestinationDir, 0);
@@ -1483,7 +1483,7 @@ namespace Danganronpa_Another_Tool
 
         private void button12_Click(object sender, EventArgs e) // REPACK TEXT PAK TYPE 2 ".PAK" --> LIN inside a PAK 
         {
-            string OriginalDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXT PAK TYPE 2",
+            string OriginalDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXT PAK TYPE 2",
                 TEMPFolder = "TEMP001";
 
             // If "EXTRACTED PAK" exists and it's not empty.
@@ -1500,7 +1500,7 @@ namespace Danganronpa_Another_Tool
                     foreach (string DirLinToBeRepacked in Directory.GetDirectories(DirsWithinTEMPFolder, "*", SearchOption.TopDirectoryOnly))
                         RePackText(DirLinToBeRepacked, DirsWithinTEMPFolder);
 
-                string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\REPACKED\\TEXT PAK TYPE 2";
+                string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}REPACKED{Path.DirectorySeparatorChar}TEXT PAK TYPE 2";
 
                 // If the destination folder does not exist, create it.
                 if (Directory.Exists(DestinationDir) == false)
@@ -1535,7 +1535,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SinglePAK in PAK.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXT PAK TYPE 3\\" + Path.GetFileNameWithoutExtension(SinglePAK);
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXT PAK TYPE 3{Path.DirectorySeparatorChar}" + Path.GetFileNameWithoutExtension(SinglePAK);
 
                         // 0 = Don't convert the images, leave them like they are.
                         ExtractPAK(SinglePAK, DestinationDir, 0);
@@ -1561,7 +1561,7 @@ namespace Danganronpa_Another_Tool
 
         private void button14_Click(object sender, EventArgs e) // REPACK TEXT PAK TYPE 3 ".PAK" --> PAK inside a PAK 
         {
-            string OriginalDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXT PAK TYPE 3",
+            string OriginalDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXT PAK TYPE 3",
            TEMPFolder = "TEMP001";
 
             // If "EXTRACTED PAK" exists and it's not empty.
@@ -1578,7 +1578,7 @@ namespace Danganronpa_Another_Tool
                     foreach (string DirLinToBeRepacked in Directory.GetDirectories(DirsWithinTEMPFolder, "*", SearchOption.TopDirectoryOnly))
                         RePackText(DirLinToBeRepacked, DirsWithinTEMPFolder);
 
-                string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\REPACKED\\TEXT PAK TYPE 3";
+                string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}REPACKED{Path.DirectorySeparatorChar}TEXT PAK TYPE 3";
 
                 // If the destination folder does not exist, create it.
                 if (Directory.Exists(DestinationDir) == false)
@@ -1613,7 +1613,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SinglePAK in PAK.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXTURE PAK (W-O CONVERT)\\" + Path.GetFileNameWithoutExtension(SinglePAK);
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXTURE PAK (W-O CONVERT){Path.DirectorySeparatorChar}" + Path.GetFileNameWithoutExtension(SinglePAK);
 
                         // 0 = Don't convert the images, leave them like they are.
                         ExtractPAK(SinglePAK, DestinationDir, 0);
@@ -1651,7 +1651,7 @@ namespace Danganronpa_Another_Tool
                             }
 
                             // Uses Scalet to decompress the file.pak.
-                            if (!UseEXEToConvert("Ext\\ScarletTestApp.exe",
+                            if (!UseEXEToConvert($"Ext{Path.DirectorySeparatorChar}ScarletTestApp.exe",
                                 "\"" + PAKFileAddress + "\" --output \"" + Path.GetDirectoryName(PAKFileAddress) +
                                 "\""))
                                 return false;
@@ -1769,8 +1769,9 @@ namespace Danganronpa_Another_Tool
                         // If the user has decided to convert images to ".png", then convert them.
                         if (ToPNG == 1 && NewFileExtension == ".tga") // From TGA to PNG.
                         {
+                            MessageBox.Show(NewFileAddress);
                             string CodeLine = "convert \"" + NewFileAddress + NewFileExtension + "\" -alpha Background -quality 100 \"" + NewFileAddress + ".png\"";
-                            if (!UseEXEToConvert("Ext\\convert.exe", CodeLine))
+                            if (!UseEXEToConvert($"Ext{Path.DirectorySeparatorChar}convert.exe", CodeLine))
                                 return false;
 
                             // Remove the original image after the conversion.
@@ -1780,7 +1781,7 @@ namespace Danganronpa_Another_Tool
                         else if (ToPNG == 1 && (NewFileExtension.Contains(".gxt") || NewFileExtension.Contains(".btx")))
                         {
                             string CodeLine = "\"" + NewFileAddress + NewFileExtension + "\"";
-                            if (!UseEXEToConvert("Ext\\ScarletTestApp.exe", CodeLine))
+                            if (!UseEXEToConvert($"Ext{Path.DirectorySeparatorChar}ScarletTestApp.exe", CodeLine))
                                 return false;
                             // Remove the original image after the conversion.
                             File.Delete(NewFileAddress + NewFileExtension);
@@ -1801,7 +1802,7 @@ namespace Danganronpa_Another_Tool
                         else if (ToPNG == 1 && NewFileExtension == ".gim") // From GIM to PNG.
                         {
                             string CodeLine = "\"" + NewFileAddress + NewFileExtension + "\"";
-                            if (!UseEXEToConvert("Ext\\GIM2PNG.exe", CodeLine))
+                            if (!UseEXEToConvert($"Ext{Path.DirectorySeparatorChar}GIM2PNG.exe", CodeLine))
                                 return false;
 
                             // Remove the original image.gim after the conversion.
@@ -1832,7 +1833,7 @@ namespace Danganronpa_Another_Tool
 
                 /* If it's not the original.pak, but a sub-pak, rename the pak in ".unknown" because it doesn't contain any known files.
                 In the case of Files.PAK containing LINs or PAKs with text, don't change the file extension ortherwise the program will not be able to extract the text from them. */
-                if (PAKFileAddress.Contains("MODE]\\EXTRACTED\\") && !PAKFileAddress.Contains("TEXT PAK TYPE 2") && !PAKFileAddress.Contains("TEXT PAK TYPE 3"))
+                if (PAKFileAddress.Contains($"MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}") && !PAKFileAddress.Contains("TEXT PAK TYPE 2") && !PAKFileAddress.Contains("TEXT PAK TYPE 3"))
                 {
                     // File.Move is not able to overwrite files, so we have to delete the file.unknown if it already exists.
                     if (File.Exists(Path.ChangeExtension(PAKFileAddress, ".unknown")))
@@ -1863,7 +1864,7 @@ namespace Danganronpa_Another_Tool
 
         private void button16_Click(object sender, EventArgs e) // REPACK TEXTURE ".PAK" W/O CONVERT 
         {
-            string OriginalDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXTURE PAK (W-O CONVERT)",
+            string OriginalDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXTURE PAK (W-O CONVERT)",
                 TEMPFolder = "TEMP001";
 
             // If "EXTRACTED PAK" exists and it's not empty.
@@ -1875,7 +1876,7 @@ namespace Danganronpa_Another_Tool
                 // 0 = Don't convert the images, leave them like they are.
                 CloneDirectory(OriginalDir, TEMPFolder, "IMAGES", 0);
 
-                string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\REPACKED\\TEXTURE PAK (W-O CONVERT)";
+                string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}REPACKED{Path.DirectorySeparatorChar}TEXTURE PAK (W-O CONVERT)";
 
                 // If the destination folder does not exist, create it.
                 if (Directory.Exists(DestinationDir) == false)
@@ -1978,7 +1979,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SinglePAK in PAK.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXTURE PAK (TO PNG)\\" + Path.GetFileNameWithoutExtension(SinglePAK);
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXTURE PAK (TO PNG){Path.DirectorySeparatorChar}" + Path.GetFileNameWithoutExtension(SinglePAK);
 
                         // 1 = Convert all the extracted images to ".png".
                         ExtractPAK(SinglePAK, DestinationDir, 1);
@@ -1993,7 +1994,7 @@ namespace Danganronpa_Another_Tool
 
         private void button18_Click(object sender, EventArgs e) // REPACK TEXTURE ".PAK" TO PNG 
         {
-            string OriginalDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\EXTRACTED\\TEXTURE PAK (TO PNG)",
+            string OriginalDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE{Path.DirectorySeparatorChar}EXTRACTED{Path.DirectorySeparatorChar}TEXTURE PAK (TO PNG)",
                TEMPFolder = "TEMP001";
 
             // If "EXTRACTED PAK" exists and it's not empty.
@@ -2006,7 +2007,7 @@ namespace Danganronpa_Another_Tool
                  * - 1 = Convert the images to GXT, TGA or BXT (it depends from the game). */
                 CloneDirectory(OriginalDir, TEMPFolder, "IMAGES", 1);
 
-                string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\REPACKED\\TEXTURE PAK (TO PNG)";
+                string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}REPACKED{Path.DirectorySeparatorChar}TEXTURE PAK (TO PNG)";
 
                 // If the destination folder does not exist, create it.
                 if (Directory.Exists(DestinationDir) == false)
@@ -2040,7 +2041,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SingleImage in IMAGES.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\CONVERT TO PNG\\FROM " + Path.GetExtension(SingleImage)?.ToUpper() + " TO PNG",
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}CONVERT TO PNG{Path.DirectorySeparatorChar}FROM " + Path.GetExtension(SingleImage)?.ToUpper() + " TO PNG",
                             ExtesionIMG = Path.GetExtension(SingleImage);
 
                         DestinationDir = DestinationDir.Replace(".", null);
@@ -2096,7 +2097,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SingleImage in IMAGES.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\CONVERT TO TGA\\FROM " + Path.GetExtension(SingleImage).ToUpper() + " TO TGA",
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}CONVERT TO TGA{Path.DirectorySeparatorChar}FROM " + Path.GetExtension(SingleImage).ToUpper() + " TO TGA",
                             ExtesionIMG = Path.GetExtension(SingleImage), ImageToConvert = SingleImage;
 
                         DestinationDir = DestinationDir.Replace(".", null);
@@ -2152,7 +2153,7 @@ namespace Danganronpa_Another_Tool
 
                     foreach (string SingleImage in IMAGES.FileNames)
                     {
-                        string DestinationDir = tabControl1.SelectedTab.Text + " [MANUAL MODE]\\CONVERT TO GXT\\FROM " + Path.GetExtension(SingleImage).ToUpper() + " TO GXT",
+                        string DestinationDir = tabControl1.SelectedTab.Text + $" [MANUAL MODE]{Path.DirectorySeparatorChar}CONVERT TO GXT{Path.DirectorySeparatorChar}FROM " + Path.GetExtension(SingleImage).ToUpper() + " TO GXT",
                             ExtesionIMG = Path.GetExtension(SingleImage), ImageToConvert = SingleImage;
 
                         DestinationDir = DestinationDir.Replace(".", null);
@@ -2227,19 +2228,19 @@ namespace Danganronpa_Another_Tool
         private bool ConvertFromPNGToTGA(string Image, string DestinationDir)
         {
             string CodeLine = "convert \"" + Image + "\" -compress RLE \"" + Path.Combine(DestinationDir, Path.GetFileNameWithoutExtension(Image)) + ".tga\"";
-            return UseEXEToConvert("Ext\\convert.exe", CodeLine);
+            return UseEXEToConvert($"Ext{Path.DirectorySeparatorChar}convert.exe", CodeLine);
         }
 
         private bool ConvertFromTGAToPNG(string Image, string DestinationDir)
         {
             string CodeLine = "convert \"" + Image + "\" -alpha Background -quality 100 \"" + Path.Combine(DestinationDir, Path.GetFileNameWithoutExtension(Image)) + ".png\"";
-            return UseEXEToConvert("Ext\\convert.exe", CodeLine);
+            return UseEXEToConvert($"Ext{Path.DirectorySeparatorChar}convert.exe", CodeLine);
         }
 
         private bool ConvertFromTGAToGXT(string Image, string DestinationDir)
         {
             string CodeLine = "-i \"" + Image + "\" -o \"" + Path.Combine(DestinationDir, Path.GetFileNameWithoutExtension(Image)) + ".gxt\"";
-            return UseEXEToConvert("Ext\\psp2gxt.exe", CodeLine);
+            return UseEXEToConvert($"Ext{Path.DirectorySeparatorChar}psp2gxt.exe", CodeLine);
         }
 
         private bool ConvertGxtBtxToPNG(string Image, string DestinationDir)
@@ -2247,7 +2248,7 @@ namespace Danganronpa_Another_Tool
             string ExtesionIMG = Path.GetExtension(Image),
             CodeLine = "\"" + Image + "\" --output \"" + DestinationDir + "\"";
 
-            if (!UseEXEToConvert("Ext\\ScarletTestApp.exe", CodeLine))
+            if (!UseEXEToConvert($"Ext{Path.DirectorySeparatorChar}ScarletTestApp.exe", CodeLine))
                 return false;
 
             /* If it exists, delete the decompressed file. "Scarlet" automatically decompress
@@ -2269,7 +2270,7 @@ namespace Danganronpa_Another_Tool
         private bool ConvertFromGIMToPNG(string Image, string DestinationDir)
         {
             string CodeLine = "\"" + Image + "\"";
-            if (!UseEXEToConvert("Ext\\GIM2PNG.exe", CodeLine))
+            if (!UseEXEToConvert($"Ext{Path.DirectorySeparatorChar}GIM2PNG.exe", CodeLine))
                 return false;
 
             //Since GIM2PNG.exe creates the image.png in the same folder as the original, we have to manually move the .png to the destination folder.
