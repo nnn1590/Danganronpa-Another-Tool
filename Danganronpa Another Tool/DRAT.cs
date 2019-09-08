@@ -92,7 +92,7 @@ namespace Danganronpa_Another_Tool
         // Clone the chosen Label to the new TableLayout
         public void CreaLabel(ref TableLayoutPanel Gril, ref Label OriginalLabel)
         {
-            int Column = Gril.GetColumn(OriginalLabel), Row = Gril.GetRow(OriginalLabel);
+            int Column = tableLayoutPanel5.GetColumn(OriginalLabel), Row = tableLayoutPanel5.GetRow(OriginalLabel);
             Gril.Controls.Add(new Label()
             {
                 Anchor = OriginalLabel.Anchor,
@@ -107,13 +107,25 @@ namespace Danganronpa_Another_Tool
                 Margin = OriginalLabel.Margin,
 
             }, Column, Row);
+            // MessageBox.Show("LabelText: " + OriginalLabel.Text + "Colum: " + Column + "\nRow: " + Row);
             Gril.SetColumnSpan(Gril.GetControlFromPosition(Column, Row), Gril.GetColumnSpan(OriginalLabel));
         }
 
         // Clone the chosen Button to the new TableLayout
         public void CloneButton(ref TableLayoutPanel Gril, ref Button OriginalButton)
         {
-            int Column = Gril.GetColumn(OriginalButton), Row = Gril.GetRow(OriginalButton);
+            int Column, Row;
+
+            if (OriginalButton.Name == "button3" || OriginalButton.Name == "button4")
+            {
+                Column = tableLayoutPanel4.GetColumn(OriginalButton);
+                Row = tableLayoutPanel4.GetRow(OriginalButton);
+            }
+            else
+            {
+                Column = tableLayoutPanel5.GetColumn(OriginalButton);
+                Row = tableLayoutPanel5.GetRow(OriginalButton);
+            }
 
             Gril.Controls.Add(new Button()
             {
@@ -130,10 +142,11 @@ namespace Danganronpa_Another_Tool
                 UseVisualStyleBackColor = OriginalButton.UseVisualStyleBackColor
             }, Column, Row);
 
+            // MessageBox.Show("ButtonText: " + OriginalButton.Text + "\nColum: " + Column + "\nRow: " + Row);
             var eventsField = typeof(Component).GetField("events", BindingFlags.NonPublic | BindingFlags.Instance);
             var eventHandlerList = eventsField.GetValue(OriginalButton);
             eventsField.SetValue(Gril.GetControlFromPosition(Column, Row), eventHandlerList);
-        }       
+        }
 
         // Clone the directories, this way the tool can delete, change and repack everything without worrying about damage the user work.
         private void CloneDirectory(string OriginalDir, string TEMPFolder, string PAKType, int ConvertOrNotToConvert)
@@ -2252,7 +2265,7 @@ namespace Danganronpa_Another_Tool
 
             return true;
         }
-        
+
         private bool ConvertFromGIMToPNG(string Image, string DestinationDir)
         {
             string CodeLine = "\"" + Image + "\"";
