@@ -1084,9 +1084,9 @@ namespace Danganronpa_Another_Tool
 
             using (FileStream NuovoXML = new FileStream(NewXMLAddress, FileMode.Create, FileAccess.Write))
             {
-                using (BinaryWriter BinXML = new BinaryWriter(NuovoXML), tx = new BinaryWriter(NuovoXML, Encoding.Unicode))
+                using (BinaryWriter BinXML = new BinaryWriter(NuovoXML, Encoding.UTF8), tx = new BinaryWriter(NuovoXML, Encoding.UTF8))
                 {
-                    BinXML.Write((UInt16)0xFEFF); //BOM
+                    BinXML.Write(Encoding.UTF8.GetPreamble()); //BOM
 
                     for (int i = 0; i < TextsExtracted.Count; i++)
                     {
@@ -1170,7 +1170,7 @@ namespace Danganronpa_Another_Tool
                 /* It extracts all the phrases translated from the XML and stores them in "TranslatedSentences".
                  XMLStreamReader.ReadToEnd () = Read all the text within the XML and stores it in a string. */
                 using (FileStream TRANSLATEDXML = new FileStream(XMLAddress, FileMode.Open, FileAccess.Read))
-                using (StreamReader XMLStreamReader = new StreamReader(TRANSLATEDXML, Encoding.Unicode))
+                using (StreamReader XMLStreamReader = new StreamReader(TRANSLATEDXML, Encoding.UTF8))
                     TranslatedSentences = TextBetweenTAGsReader(XMLStreamReader.ReadToEnd(), "<TRANSLATED N°", "</TRANSLATED N°");
             }
             // If there are no text files, and you the user is working on a different game from DR1.
